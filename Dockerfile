@@ -1,10 +1,17 @@
-FROM n8nio/n8n
+FROM node:18
 
-# Port n8n will run on
+# Create app directory
+WORKDIR /app
+
+# Install n8n
+RUN npm install n8n -g
+
+# Set required env variables (optional/default)
 ENV N8N_PORT=5678
+ENV TZ=Asia/Kolkata
 
-# Expose port
+# Expose the port
 EXPOSE 5678
 
-# This actually launches n8n
-CMD ["n8n", "start"]
+# Start the n8n server
+CMD ["n8n"]
